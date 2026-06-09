@@ -1,0 +1,179 @@
+{% extends "a_simple_base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'filetransfer/styles.css' %}">
+<style>
+  .cart-popup {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #7a5975 0%, #790373 100%);
+    border-radius: 20%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    overflow: hidden;
+    z-index: 999;
+  }
+  
+  .cart-popup:hover {
+    box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+  }
+
+  .cart-icon {
+    position: absolute;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .cart-popup:hover .cart-icon {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  .cart-badge {
+    position: absolute;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid white;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  .cart-popup:hover .cart-badge {
+    transform: translateY(0);
+    opacity: 1;
+  }
+</style>
+{% endblock %}
+
+{% block hero %}
+
+{% endblock %}
+
+{% block title %}
+File Transfer
+{% endblock %}
+
+{% block content %}
+<h1>Download from Server</h1>
+
+
+
+{% if at_home %}
+
+    <a href="{% url 'download' %}">🏠</a>
+
+    <hr>
+
+    {% for root in roots %}
+        <div>
+            <a href="{% url 'download_root' root_name=root %}">
+                📁 {{ root }}
+            </a>
+        </div>
+    {% endfor %}
+
+{% else %}
+
+    <a href="{% url 'download' %}">🏠</a> > <a href="{% url 'download_root' root_name=root_name %}">{{ root_name }}</a>
+
+    {% if subpath %}
+        
+        {% for item in individual_paths %}
+            > <a href="{% url 'download_browse' root_name=root_name subpath=item.path %}">{{ item.name }}</a>
+        {% endfor %}
+    {% endif %}
+
+    <hr>
+<ul>
+    {% for item in items %}
+<li>
+<div>
+
+    <div class="checkbox-wrapper-33">
+
+        <form action="{% url 'toggle_selection' %}" method="get">
+
+            <input type="hidden" name="root" value="{{ root_name }}">
+            <input type="hidden" name="path" value="{{ item.path }}">
+
+            <label class="checkbox">
+
+                <input
+                    class="checkbox__trigger visuallyhidden"
+                    type="checkbox"
+                    onchange="this.form.submit()"
+                    {% if item.selected %}checked{% endif %}
+                >
+
+                <span class="checkbox__symbol">
+                    <svg
+                        aria-hidden="true"
+                        class="icon-checkbox"
+                        width="28px"
+                        height="28px"
+                        viewBox="0 0 28 28"
+                        version="1"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M4 14l8 7L24 7"></path>
+                    </svg>
+                </span>
+
+                {% if item.is_dir %}
+                    <a href="{% url 'download_browse' root_name=root_name subpath=item.path %}">
+                        <span class="checkbox__textwrapper">
+                            📁 {{ item.name }}
+                        </span>
+                    </a>
+                {% else %}
+                    <span class="checkbox__textwrapper">
+                        📄 {{ item.name }}
+                    </span>
+                {% endif %}
+
+            </label>
+
+        </form>
+
+    </div>
+
+</div>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<!-- Cart Popup Widget -->
+<a href="{% url 'cart' %}" class="cart-popup" title="View Cart" onclick="return handleCartClick()">
+  <span class="cart-icon">🛒</span>
+  <span class="cart-badge">{{cart_count}}</span>
+</a>
+
+<script>
+  function handleCartClick() {
+    // Redirect to cart page
+    return true;
+  }
+</script>
+
+{% endblock %}

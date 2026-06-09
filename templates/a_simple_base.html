@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+        {% block extra_style %}{% endblock %}
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
+     {% comment %} tailwind:: {% endcomment %}<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a class="brand" href="/">
+                <div class="logo">HS</div>
+                <div class="title">Shashank's HomeServer</div>
+            </a>
+            <nav class="nav">
+                <a href="/dashboard/">Dashboard</a>
+                <a href="/filetransfer/">Files</a>
+
+
+                {% if is_admin %}
+                    <a href="/admin/">Admin</a>
+                {% endif %}
+
+                <a href="{% url 'logout' %}">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    {% block hero %}
+    <section class="hero">
+        <h1 class="header-title">Welcome To Shashank's HomeServer</h1>
+        <p class="subtitle">A small local server to share files and monitor services on your home network.</p>
+        <a class="cta" href="/">Explore</a>
+    </section>
+    {% endblock %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Shashank's HomeServer. All rights reserved.</p>
+    </footer>
+</body>
+</html>

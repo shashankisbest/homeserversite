@@ -1,0 +1,112 @@
+When you SSH into your server, you're working on the server's operating system, not your Windows laptop. Your server doesn't automatically have Django installed just because your laptop does.
+
+Check first:
+
+python3 --version
+pip3 --version
+
+Then check if Django exists:
+
+django-admin --version
+
+or
+
+python3 -m django --version
+
+If you get "command not found" or "No module named django", install it.
+
+For a Docker-based project, the usual workflow is:
+
+mkdir myproject
+cd myproject
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip install django
+
+Now:
+
+django-admin startproject website .
+
+python manage.py startapp filetransfer
+
+Good.
+
+The next thing to do is register the app in settings.py.
+
+Open:
+
+website/settings.py
+
+Find:
+
+INSTALLED_APPS = [...
+add this in the list -> 'filetransfer',
+
+now create views in your app
+    from django.http import HttpResponse
+
+    def home(request):
+        return HttpResponse("File Transfer App")
+
+
+
+filetransfer/urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home),
+]
+
+
+website/urls.py
+
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('filetransfer.urls')),
+    ]
+
+
+
+
+making login page
+
+create app accounts
+in models.py:
+    from django.db import models
+
+    class User(models.Model):
+        username = models.CharField(max_length=50, unique=True)
+        password = models.CharField(max_length=255)
+        is_admin = models.BooleanField(default=False)
+
+        def __str__(self):
+            return self.username
+
+
+Step 4: Create the database table
+
+Run:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+This creates the User table.
+
+to verify : manage.py shell
+Inside the shell:
+
+from accounts.models import User
+User.objects.all()
+
+You should see something like:
+
+<queryset []>
+exit to exit

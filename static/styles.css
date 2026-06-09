@@ -1,0 +1,70 @@
+.header-title{
+  font-size: 48px; 
+  margin: 0; 
+  font-weight: 800; 
+}
+header{
+    text-align: center;
+}
+
+body{
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffb6d5, #ffd6e8);
+  color: #333;
+  min-height: 100vh;
+}   
+
+/* Global styles */
+* { box-sizing: border-box; }
+/* Header */
+.header{
+  background: linear-gradient(135deg, #ff7597, #ff4081);
+  color: #fff;
+  padding: 20px 16px;
+  box-shadow: 0 12px 24px rgba(255, 64, 129, 0.24);
+}
+.header .container{
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; }
+.brand .logo{
+  width:56px; height:56px; border-radius:20px; background: rgba(255,255,255,0.25);
+  display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.brand .title{ font-size:20px; font-weight:800; letter-spacing:-0.3px; }
+
+.nav{ display:flex; gap:16px; align-items:center; }
+.nav a{ color: rgba(255,255,255,0.95); text-decoration:none; font-weight:600; padding:10px 16px; border-radius:16px; transition: all 0.25s ease; }
+.nav a:hover{ background: rgba(255,255,255,0.15); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+
+/* Hero */
+.hero{ text-align:center; padding:56px 16px; }
+.hero .header-title{ font-size:48px; margin:0; font-weight:800; color:#d6336c; line-height:1.03; }
+.hero .subtitle{ margin-top:12px; color:#7f4f6f; font-size:18px; max-width:820px; margin-left:auto; margin-right:auto; }
+.cta{ display:inline-block; margin-top:20px; background:linear-gradient(135deg, #ff7597, #ff4081); color:#fff; padding:12px 20px; border-radius:16px; text-decoration:none; font-weight:700; box-shadow: 0 8px 24px rgba(255, 64, 129, 0.24); transition: all 0.2s ease; }
+.cta:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(255, 64, 129, 0.32); }
+
+/* Main content */
+main{ max-width: 1100px; margin: 0 auto; padding: 40px 16px; }
+main h2{ color: #d6336c; font-size: 2rem; margin-bottom: 16px; }
+main p{ color: #7f4f6f; font-size: 1.05rem; line-height: 1.6; }
+
+/* Footer */
+footer{ text-align:center; padding:24px 16px; color:#7f4f6f; font-size:14px; }
+
+/* Responsive adjustments */
+@media (max-width:800px){
+  .hero .header-title{ font-size:30px; }
+  .brand .title{ font-size:16px; }
+  .header .container{ padding:0 8px; }
+  .nav{ gap:8px; }
+}
+
