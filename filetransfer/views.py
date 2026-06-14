@@ -1,17 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from accounts.models import User
-
+import mystorageroots as msr
 # Create your views here.
 
 
 
-ALLOWED_STORAGE_ROOTS = {
-    "server_storage" : "/home/SHASHANK1",
-    "hdd1": "/mnt/old_hdd/hdd1",
-    "hdd2": "/mnt/old_hdd/hdd2",
-    "hdd3": "/mnt/old_hdd/hdd3",
-}
+ALLOWED_STORAGE_ROOTS = msr.ALLOWED_STORAGE_ROOTS
 
 
 def home(request):
