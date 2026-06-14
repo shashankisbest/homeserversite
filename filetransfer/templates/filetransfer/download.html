@@ -62,6 +62,36 @@
     transform: translateY(0);
     opacity: 1;
   }
+  .action-button {
+      padding: 10px 18px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      margin-top: 10px;
+    }
+
+    .action-button--primary {
+      background: linear-gradient(135deg, #4a8cff, #3b74ff);
+    }
+
+    .action-button--secondary {
+      background: linear-gradient(135deg, #6c757d, #52575f);
+    }
+
+    .action-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .action-button:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+    
 </style>
 {% endblock %}
 
@@ -104,6 +134,24 @@ File Transfer
     {% endif %}
 
     <hr>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="new_folder_name"
+            placeholder="New folder name"
+            required
+            style="padding: 5px; color: #404040; cursor: pointer;decoration: none; border: 1px border-radius: 4px; margin-right: 10px;margin-bottom: 10px; width: 200px;margin-top: 10px;"
+        >
+
+        <button type="submit" name="action" value="create_folder" class="action-button action-button--secondary">
+            Create Folder
+        </button>
+    </form>
+
+
 <ul>
     {% for item in items %}
 <li>

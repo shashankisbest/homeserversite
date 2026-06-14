@@ -7,7 +7,10 @@ from accounts.models import User
 
 
 ALLOWED_STORAGE_ROOTS = {
-    "server_storage" : "/home/SHASHANK1"
+    "server_storage" : "/home/SHASHANK1",
+    "hdd1": "/mnt/old_hdd/hdd1",
+    "hdd2": "/mnt/old_hdd/hdd2",
+    "hdd3": "/mnt/old_hdd/hdd3",
 }
 
 
@@ -63,6 +66,32 @@ def upload(request, root_name=None, subpath=None):
 
 
     if request.method == "POST":
+
+        
+
+        if request.POST.get("action") == "create_folder":
+
+            folder_name = request.POST.get("new_folder_name")
+
+            current_path = ALLOWED_STORAGE_ROOTS[root_name]
+
+            if subpath:
+                current_path = os.path.join(current_path, subpath)
+
+            new_folder_path = os.path.join(
+                current_path,
+                folder_name
+            )
+
+            os.makedirs(
+                new_folder_path,
+                exist_ok=True
+            )
+
+            return redirect(request.path)
+
+
+
         return upload_files(request,root_name,subpath)
 
     
@@ -142,6 +171,31 @@ def upload(request, root_name=None, subpath=None):
 
 
 def download(request, root_name=None, subpath=None):
+
+    if request.method == "POST":
+
+        if request.POST.get("action") == "create_folder":
+
+            folder_name = request.POST.get("new_folder_name")
+
+            current_path = ALLOWED_STORAGE_ROOTS[root_name]
+
+            if subpath:
+                current_path = os.path.join(current_path, subpath)
+
+            new_folder_path = os.path.join(
+                current_path,
+                folder_name
+            )
+
+            os.makedirs(
+                new_folder_path,
+                exist_ok=True
+            )
+
+            return redirect(request.path)
+
+            
     
     if "cart" not in request.session:
         request.session["cart"] = []
@@ -311,6 +365,7 @@ def download_zip(request):
         })
 
     temp_file = tempfile.NamedTemporaryFile(
+    dir="temp_zips",
     delete=False,
     suffix=".zip"
     )
@@ -371,17 +426,6 @@ def download_zip(request):
         filename="homeserver_download.zip"
     )
 
-    original_close = response.close
-
-    def cleanup():
-        file_handle.close()
-
-        if os.path.exists(zip_path):
-            os.remove(zip_path)
-
-        original_close()
-
-    response.close = cleanup
 
     return response
 
