@@ -1,0 +1,14 @@
+from django.contrib.auth.hashers import make_password
+from accounts.models import User
+
+User.objects.create(
+    username="demouser",
+    password=make_password("password123"),
+    is_admin=False
+)
+
+User.objects.create(
+    username="demoadmin",
+    password=make_password("password123"),
+    is_admin=True
+)
