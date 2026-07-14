@@ -1,0 +1,8 @@
+Grocery Shopping List
+---------------------
+- Eggs
+- Milk
+- Bread
+- Pasta
+- Apples
+- Coffee

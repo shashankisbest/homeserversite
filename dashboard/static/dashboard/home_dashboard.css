@@ -414,3 +414,153 @@
     }
 
 }
+
+
+
+
+/* =======================
+   Bottom Grid
+======================= */
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+/* =======================
+   List Items
+======================= */
+
+.list-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 18px;
+
+    margin:10px 0;
+
+    background:#f8fafc;
+
+    border-radius:12px;
+
+    border:1px solid #e5e7eb;
+
+    transition:.25s;
+
+}
+
+.list-item:hover{
+
+    background:#eef6ff;
+
+    transform:translateX(4px);
+
+}
+
+.list-item:last-child{
+
+    border-bottom:none;
+
+}
+
+/* =======================
+   Info Rows
+======================= */
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #efefef;
+
+}
+
+.info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.info-row span{
+
+    color:#666;
+
+}
+
+.info-row strong{
+
+    color:#222;
+
+}
+
+/* =======================
+   Status Badges
+======================= */
+
+.badge{
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    font-size:13px;
+
+    min-width:95px;
+
+    text-align:center;
+
+}
+
+
+.green{
+
+    background:#dff6e5;
+
+    color:#138a36;
+
+}
+
+.red{
+
+    background:#fde3e3;
+
+    color:#c62828;
+
+}
+
+/* =======================
+   Hover
+======================= */
+
+.card{
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 24px rgba(0,0,0,.08);
+
+}

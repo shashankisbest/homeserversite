@@ -118,6 +118,7 @@ Dashboard
 
                     <span class="disk-name">
                         Server SSD
+                        
                     </span>
 
                     <span class="disk-size">
@@ -276,6 +277,129 @@ Dashboard
 
                 </div>
 
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <!-- ================= SERVICES ================= -->
+
+        <div class="card">
+
+            <div class="card-title">⚙️ Services</div>
+
+            {% for service in services %}
+
+            <div class="list-item">
+
+                
+                {% if service.status == "active" %}
+                <span class="badge green">🟢 Running</span>
+                {% else %}
+                <span class="badge red">🔴 Offline</span>
+                {% endif %}
+                
+                <span>{{ service.name }}</span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ================= CONTAINERS ================= -->
+
+        <div class="card">
+
+            <div class="card-title">🐳 Docker Containers</div>
+
+            {% for c in containers %}
+
+            <div class="list-item">
+
+                
+                {% if "Up" in c.status %}
+                <span class="badge green">🟢 Running</span>
+                {% else %}
+                <span class="badge red">🔴 Stopped</span>
+                {% endif %}
+                
+                <span>{{ c.name }}</span>
+
+            </div>
+
+            {% empty %}
+
+            <p>No containers found.</p>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ================= NETWORK ================= -->
+
+        <div class="card">
+
+            <div class="card-title">🌐 Network</div>
+
+            <div class="info-row">
+                <span>Local IP</span>
+                <strong>{{ network.local_ip }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Tailscale</span>
+                <strong>{{ network.tailscale_ip }}</strong>
+            </div>
+
+        </div>
+
+
+        <!-- ================= SERVER INFO ================= -->
+
+        <div class="card">
+
+            <div class="card-title">🖥️ Server Information</div>
+
+            <div class="info-row">
+                <span>Operating System</span>
+                <strong>{{ server.os }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Kernel</span>
+                <strong>{{ server.kernel }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Hostname</span>
+                <strong>{{ server.hostname }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>CPU</span>
+                <strong>{{ server.cpu }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Cores</span>
+                <strong>{{ server.cores }}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>RAM</span>
+                <strong>{{ server.ram }} GB</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Python</span>
+                <strong>{{ server.python }}</strong>
             </div>
 
         </div>
