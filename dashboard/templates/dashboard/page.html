@@ -288,77 +288,83 @@ Dashboard
 
         <!-- ================= SERVICES ================= -->
 
-        <div class="card">
+        {% if is_admin %}
 
-            <div class="card-title">⚙️ Services</div>
+            <div class="card">
 
-            {% for service in services %}
+                <div class="card-title">⚙️ Services</div>
 
-            <div class="list-item">
+                {% for service in services %}
 
-                
-                {% if service.status == "active" %}
-                <span class="badge green">🟢 Running</span>
-                {% else %}
-                <span class="badge red">🔴 Offline</span>
-                {% endif %}
-                
-                <span>{{ service.name }}</span>
+                <div class="list-item">
 
-            </div>
+                    
+                    {% if service.status == "active" %}
+                    <span class="badge green">🟢 Running</span>
+                    {% else %}
+                    <span class="badge red">🔴 Offline</span>
+                    {% endif %}
+                    
+                    <span>{{ service.name }}</span>
 
-            {% endfor %}
+                </div>
 
-        </div>
-
-
-        <!-- ================= CONTAINERS ================= -->
-
-        <div class="card">
-
-            <div class="card-title">🐳 Docker Containers</div>
-
-            {% for c in containers %}
-
-            <div class="list-item">
-
-                
-                {% if "Up" in c.status %}
-                <span class="badge green">🟢 Running</span>
-                {% else %}
-                <span class="badge red">🔴 Stopped</span>
-                {% endif %}
-                
-                <span>{{ c.name }}</span>
+                {% endfor %}
 
             </div>
 
-            {% empty %}
-
-            <p>No containers found.</p>
-
-            {% endfor %}
-
-        </div>
 
 
-        <!-- ================= NETWORK ================= -->
+            <!-- ================= CONTAINERS ================= -->
 
-        <div class="card">
+            <div class="card">
 
-            <div class="card-title">🌐 Network</div>
+                <div class="card-title">🐳 Docker Containers</div>
 
-            <div class="info-row">
-                <span>Local IP</span>
-                <strong>{{ network.local_ip }}</strong>
+                {% for c in containers %}
+
+                <div class="list-item">
+
+                    
+                    {% if "Up" in c.status %}
+                    <span class="badge green">🟢 Running</span>
+                    {% else %}
+                    <span class="badge red">🔴 Stopped</span>
+                    {% endif %}
+                    
+                    <span>{{ c.name }}</span>
+
+                </div>
+
+                {% empty %}
+
+                <p>No containers found.</p>
+
+                {% endfor %}
+
             </div>
 
-            <div class="info-row">
-                <span>Tailscale</span>
-                <strong>{{ network.tailscale_ip }}</strong>
+
+            <!-- ================= NETWORK ================= -->
+
+            <div class="card">
+
+                <div class="card-title">🌐 Network</div>
+
+                <div class="info-row">
+                    <span>Local IP</span>
+                    <strong>{{ network.local_ip }}</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Tailscale</span>
+                    <strong>{{ network.tailscale_ip }}</strong>
+                </div>
+
             </div>
 
-        </div>
+
+        {% endif %}
 
 
         <!-- ================= SERVER INFO ================= -->
