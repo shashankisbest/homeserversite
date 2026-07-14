@@ -110,3 +110,26 @@ You should see something like:
 
 <queryset []>
 exit to exit
+
+
+
+
+
+
+docker:
+make docker file
+build image
+
+you have to explicitly mount the disks before making container
+
+docker run -d \
+  --name homeserver \
+  -p 8000:8000 \
+  -v /home/SHASHANK1:/server_storage \
+  -v /mnt/old_hdd/hdd1:/hdd1 \
+  -v /mnt/old_hdd/hdd2:/hdd2 \
+  -v /mnt/old_hdd/hdd3:/hdd3 \
+  HomeServerDocker
+
+
+  

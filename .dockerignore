@@ -1,0 +1,32 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.env
+.venv/
+
+# Node modules
+node_modules/
+
+# Git
+.git/
+.gitignore
+
+# Docker
+docker-compose.override.yml
+
+# Editor files
+*.swp
+*.swo
+*.idea/
+.vscode/
+
+# Application-specific ignores
+
+getstarted
+
+

@@ -1,0 +1,416 @@
+/* ===========================
+   Dashboard
+=========================== */
+
+
+
+.dashboard{
+
+    max-width:1100px;
+    margin:40px auto;
+    padding:20px;
+
+    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.dashboard-header{
+
+    margin-bottom:40px;
+
+}
+
+.dashboard-header h1{
+
+    margin:0;
+    font-size:38px;
+    color:#2b2b2b;
+
+}
+
+.dashboard-header p{
+
+    margin-top:10px;
+    font-size:18px;
+    color:#666;
+
+}
+
+.role{
+
+    padding:4px 12px;
+    border-radius:15px;
+    color:white;
+    margin-left:10px;
+    font-size:14px;
+
+}
+
+.admin{
+
+    background:#e53935;
+
+}
+
+.user{
+
+    background:#00a86b;
+
+}
+
+/* ===========================
+   Cards
+=========================== */
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+        0px 10px 25px rgba(0,0,0,.08);
+
+}
+
+.card-title{
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    margin-bottom:25px;
+
+    color:#333;
+
+}
+
+/* ===========================
+   Status Grid
+=========================== */
+
+.status-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:18px;
+
+}
+
+.status-box{
+
+    background:#f8f9fb;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    transition:.25s;
+
+}
+
+.status-box:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.status-label{
+
+    font-size:14px;
+
+    color:#777;
+
+    margin-bottom:10px;
+
+}
+
+.status-value{
+
+    font-size:26px;
+
+    font-weight:700;
+
+    color:#222;
+
+}
+
+/* ===========================
+   Storage
+=========================== */
+
+.storage-pill{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-bottom:28px;
+
+}
+
+/* Left Circle */
+
+.storage-icon{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    background:linear-gradient(145deg,#ffffff,#dcdcdc);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:32px;
+
+    box-shadow:
+
+        inset 3px 3px 8px rgba(0,0,0,.08),
+
+        inset -3px -3px 8px white,
+
+        0 4px 10px rgba(0,0,0,.08);
+
+}
+
+/* Main Pill */
+
+.storage-main{
+
+    flex:1;
+
+    /* background:#18b5aa; */
+
+    border-radius:45px;
+
+    padding:18px 28px;
+
+    color:white;
+
+}
+/* 
+.server{
+    background:#18b5aa;
+}
+
+.hdd1{
+    background:#3498db;
+}
+
+.hdd2{
+    background:#9b59b6;
+}
+
+.hdd3{
+    background:#f39c12;
+} */
+
+
+.server{
+    background:linear-gradient(135deg,#1abc9c,#16a085);
+}
+
+.hdd1{
+    background:linear-gradient(135deg,#3498db,#2980b9);
+}
+
+.hdd2{
+    background:linear-gradient(135deg,#9b59b6,#8e44ad);
+}
+
+.hdd3{
+    background:linear-gradient(135deg,#f39c12,#e67e22);
+}
+/* Top Row */
+
+.storage-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+
+.disk-name{
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.disk-size{
+
+    font-size:15px;
+
+    opacity:.95;
+
+}
+
+/* Progress Row */
+
+.pill{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.percent{
+
+    width:75px;
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+/* Track */
+
+.pill-track{
+
+    flex:1;
+
+    height:42px;
+
+    border-radius:25px;
+
+    background:rgba(0,0,0,.18);
+
+    overflow:hidden;
+
+}
+
+/* Fill */
+
+.pill-fill{
+
+    height:100%;
+
+    background:white;
+
+    border-radius:25px;
+
+    transition:width .6s ease;
+
+}
+
+/* ===========================
+   Hover
+=========================== */
+
+.storage-pill:hover .storage-main{
+
+    box-shadow:0 10px 22px rgba(0,0,0,.12);
+
+}
+
+.storage-pill:hover{
+
+    transform:translateY(-2px);
+
+    transition:.25s;
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:850px){
+
+    .storage-pill{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .storage-main{
+
+        width:100%;
+
+    }
+
+    .storage-top{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:8px;
+
+    }
+
+    .percent{
+
+        width:60px;
+
+        font-size:22px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .dashboard{
+
+        padding:10px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .status-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .dashboard-header h1{
+
+        font-size:30px;
+
+    }
+
+    .status-value{
+
+        font-size:22px;
+
+    }
+
+}
